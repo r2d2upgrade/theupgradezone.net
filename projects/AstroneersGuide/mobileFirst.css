@@ -1,0 +1,100 @@
+body {
+	margin: 0px;
+	padding: 0px;
+
+	font-family:Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	color: #dddddd;
+	background: #000000;
+}
+
+#content {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	min-height: 100%;
+	text-align: center;
+}
+
+#header {
+	width: 100%;
+	height: 100px;
+	margin: 0px;
+	padding: 0px;
+}
+	#header img {
+		width: 100%;
+		max-height: 100%;
+		vertical-align: middle;
+		display: block;
+	}
+
+.mainImage {
+	max-height: 256px;
+	width: auto;
+	padding: 0px;
+	margin: 0px;
+}
+	.mainImage:hover {
+		background-color: #333333;
+	}
+
+.accordion {
+	width: 100%;
+	text-align: center;
+	display: block;
+	overflow: hidden;
+	max-height: 0;
+  	transition: max-height 0.5s ease-out;
+  	background-color: #222222;
+  	margin: 0px;
+  	max-height: 800px;
+}
+	.accordion.hidden{
+		max-height: 0px;
+  		transition: max-height 0.5s ease-in;
+	}
+	.accordion h1 {
+		
+	}
+
+.listItem {
+	width: 100%;
+	height: 48px;
+	padding: 0;
+	margin: 0;
+	float: left;
+	display: block;
+	transition-duration: 0.3s;
+}
+	.listItem:hover {
+		background-color: #333366;
+		transition-duration: 0.3s;
+	}
+	.listItem img {
+		width: auto;
+		height: 100%;
+		float: left;
+		padding: 0;
+		margin: 0;
+	}
+	.listItem h1 {
+		margin: auto 5px;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		float: left;
+		display: block;
+		font-size: 25px;
+	}
+
+.splitBackpack {
+	width: 50%;
+}
+
+.module {
+	float: left;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}

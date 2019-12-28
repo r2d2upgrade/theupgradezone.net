@@ -1,0 +1,49 @@
+body {
+
+}
+
+#content {
+	width: 800px;
+	margin: 0 auto;
+}
+
+#header {
+
+}
+	#header img {
+
+	}
+
+.mainImage {
+
+}
+	.mainImage:hover {
+
+	}
+
+.accordion {
+
+}
+	.accordion.hidden{
+
+	}
+
+.listItem {
+	height: 64px;
+}
+	.listItem img {
+
+	}
+	.listItem h1 {
+		font-size: 20px;
+	}
+
+.splitBackpack {
+	width: 33%;
+}
+
+.module {
+	width: 16%;
+	padding: 0px;
+	margin: 0px;
+}
