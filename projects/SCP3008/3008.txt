@@ -1,0 +1,178 @@
+------Player------
+-Movement
+-Combat
+-Health and sanity
+
+------World------
+-Sections and generation
+-Storing objects
+
+------Building------
+-Placing and moving structures
+-Building strucutres
+-Disassembling structures
+-Destroying structures
+
+------Enemies------
+-Spawning
+-Sound, light, attraction
+-Attacking
+-Dying and body piles
+
+------Items and crafting------
+-Inventory management
+-Crafting
+
+
+
+------Sections------
+Open Showroom
+Closed showroom
+Warehouse
+Restaurant + restrooms
+Shop
+Checkout/Pickup
+Pharmacy
+Trolleys
+
+------Objects of interest------
+-Staff computers
+
+
+Main loop:
+-Explore
+-Find materials to build shelter and fortifications
+-Find food and water to maintain health
+-Do certain things to maintain sanity. More sanity allows you to heal faster, run further, craft faster etc
+-Use found tools to fashion better structures and weapons
+-Find computers to unlock more crafting recipes
+-Use paper to research more crafting recipes
+-Deconstruct objects to get better materials and learn how they work
+-Find and craft clothes and armor
+-Use weapons to survive the night
+-Move bodies to avoid attracting them
+
+-Noise and light attract Staff
+
+Items:
+------Crafting items------
+-Fasteners (nuts, bolts, nails, screws)
+-Zip-ties
+-Tape
+-Glue
+-String
+-Nails
+-Rope
+
+------Tools------
+-Drill
+-Rules/tape measures
+-Gluegun
+-Pencils
+-Wrenches
+-Hammers
+-Saws
+-Routers
+-Lawnmowers
+-Crowbars
+-Screwdrivers
+-Soldering irons
+-Scissors
+-Wire cutters
+-Hacksaw
+
+------Basic materials------
+-Wood planks
+-Metal sheets
+-Dowel rods
+-Wood beams
+-Metal rods
+-Fabric
+-Plastic
+-Cardboard
+
+------Technical components------
+-Wire
+-Electrical components
+-Batteries
+-Large batteries
+-Rechargers
+-Bulbs
+-LEDs
+-Pipes/PVC
+-Valves
+-Bungee
+
+------Consumables------
+-Foods/Water
+-Medicines
+-Bandages
+
+------Weapons + Items------
+-Fire axe
+-Table legs/dowels
+-Metal rods
+-Nailgun
+
+-Crafted weapons
+	-Spiked bat/mace
+	-Lawnmower blade hatchet (throwable)
+	-Railgun?
+	-Crossbow
+	-Bow
+	-Spear
+		- +atlatl (spear thrower)
+	-Sasumata
+
+-Modified weapons
+	-Electrical
+	-Flaming?
+-Shields (different strengths)
+
+-Flashlight (different powers)
+	-Can be attached to many items
+-Alarm clock (distraction)
+
+------Wearables------
+-Gloves
+-Kneepads
+-Gauntlets (different strengths)
+-Helmet (different strengths)
+-Chestplate (different strengths)
+-Shinpads/Greaves (different strengths)
+-Legwear (different strengths)
+-Backpack
+-Tool belt
+
+------Furniture + Placeables------
+-Tables/desks
+-Chairs
+-Shelves
+-Beds
+-Sofas
+-Matresses
+-Cabinets
+-Trunks/chests/baskets
+-Wardrobes
+-Lamps
+-Extension cords
+-Splitters
+-Speakers
+-Clocks
+-Ladders + Stepladders
+
+------Construction blocks------
+-Barricade wall (different strengths)
+-Holed barricade wall (different strengths)
+-Barricaded gate (different strengths)
+-Support
+-Floor
+-Wall (different types, like with holes, angled, half height etc)
+-Stairs
+-Ladder
+
+------Usable objects------
+-Flatbed trolley
+-Basket trolley
+-Connect them for trolley trains?
+-Forklifts?

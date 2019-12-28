@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<script>
+
+//====================== VARIABLES ======================
+var array_map = [];
+/*
+name: biome name
+image: biome image
+chance: the current chance of the biome generating
+baseChance: the starting chance of it generating in a step
+chanceReduction: how much its chance is reduced when it is placed
+chanceAddition: how much its chance is increased when it is not placed
+*/
+var array_biomes = [
+{name:"Open Showroom", image:"image_openShowroom", 		chance:0, baseChance:200, chanceReduction:1, chanceAddition:6},
+{name:"Closed Showroom", image:"image_closedShowroom", 	chance:0, baseChance:1, chanceReduction:20, chanceAddition:4},
+{name:"Warehouse", image:"image_warehouse", 			chance:0, baseChance:1, chanceReduction:100, chanceAddition:10},
+{name:"Restaurant", image:"image_restaurant", 			chance:0, baseChance:1, chanceReduction:100, chanceAddition:5},
+{name:"Shop", image:"image_shop", 						chance:0, baseChance:1, chanceReduction:100, chanceAddition:5},
+{name:"Checkout", image:"image_checkout", 				chance:0, baseChance:1, chanceReduction:100, chanceAddition:10},
+{name:"Pharmacy", image:"image_pharmacy", 				chance:0, baseChance:1, chanceReduction:100, chanceAddition:5},
+{name:"Trolleys", image:"image_trolleys", 				chance:0, baseChance:1, chanceReduction:100, chanceAddition:10}
+]
+
+var mapSize = {width:64, height:64};
+var currentPosition = {x:0, y:0};
+
+var element_canvas = null;
+var ctx = null;
+
+
+//====================== INIT ======================
+function init() {
+	//Get elements
+	element_canvas = document.getElementById("myCanvas");
+	ctx = element_canvas.getContext("2d");
+
+	//Make empty map
+	for (var i = 0; i < 128; i++) {
+		array_map[i] = [];
+	}
+	for (var i=0; i < mapSize.width; i++) {
+		for (var j = 0; j < mapSize.height; j++) {
+			array_map[i][j] = 0;
+		}
+	}
+
+	//Set the chances of the biomes
+	for (var i = 0; i < array_biomes.length; i++) {
+		array_biomes[i].chance = array_biomes[i].baseChance;
+	}
+
+	fixChances();
+	setBars();
+}
+
+
+//====================== BARS ======================
+function setBars() {
+	//Set the bar widths
+	var element_barContainer = document.getElementById("barContainer");
+	for (var i = 0; i < element_barContainer.children.length; i++) {
+		element_barContainer.children[i].style.width = array_biomes[i].chance + "%";
+		element_barContainer.children[i].firstChild.innerHTML = array_biomes[i].chance;
+	}
+}
+
+function fixChances() {
+	var totalChance = 0;
+	for (var i = 0; i < array_biomes.length; i++) {
+		totalChance += array_biomes[i].chance;
+	}
+
+	for (var i = 0; i < array_biomes.length; i++) {
+		array_biomes[i].chance = (array_biomes[i].chance / totalChance) * 100;
+	}
+}
+
+//====================== GENERAITON ======================
+function generateChunk(x, y) {
+	var biome = -1;
+	var randomNum = Math.random() * 100;
+
+	while(randomNum > 0) {
+		biome++;
+		randomNum -= array_biomes[biome].chance;
+	}
+
+	array_map[x][y] = biome;
+	
+	/*
+	array_biomes[biome].chance -= array_biomes[biome].chanceReduction;
+	if (array_biomes[biome].chance < 0) array_biomes[biome].chance = 0;
+
+	for (var i = 0; i < array_biomes.length; i++) {
+		if(i != biome) array_biomes[i].chance += array_biomes[biome].chanceAddition;
+		//if (array_biomes[biome].chance > 100) array_biomes[biome].chance = 100;
+	}
+
+	fixChances();
+	*/
+
+
+}
+
+function renderChunk(x, y) {
+	var biome = array_map[x][y];
+	ctx.drawImage(document.getElementById(array_biomes[biome].image), x * 32, y * 32);
+}
+
+function render() {
+	for (var i=0; i < mapSize.width; i++) {
+		for (var j = 0; j < mapSize.height; j++) {
+			generateChunk(i, j);
+			renderChunk(i, j);
+			setBars();
+		}
+	}
+}
+
+function genRenChunk(x, y) {
+	generateChunk(x, y);
+	renderChunk(x,y);
+	setBars();
+}
+
+
+</script>
+
+<body onload="init()">
+	<img id="image_openShowroom" class="" src="images/openShowroom.png">
+	<img id="image_closedShowroom" class="" src="images/closedShowroom.png">
+	<img id="image_warehouse" class="" src="images/warehouse.png">
+	<img id="image_restaurant" class="" src="images/restaurant.png">
+	<img id="image_shop" class="" src="images/shop.png">
+	<img id="image_checkout" class="" src="images/checkout.png">
+	<img id="image_pharmacy" class="" src="images/pharmacy.png">
+	<img id="image_trolleys" class="" src="images/trolleys.png">
+
+	<div style="clear: both"></div>
+
+	<div id="barContainer">
+		<div id="bar_openShowroom" class="bar" style="background-image:url('images/openShowroom.png'); width: 100px"><p>x</p></div>
+		<div id="bar_openShowroom" class="bar" style="background-image:url('images/closedShowroom.png'); width: 100px"><p>x</p></div>
+		<div id="bar_openShowroom" class="bar" style="background-image:url('images/warehouse.png'); width: 100px"><p>x</p></div>
+		<div id="bar_openShowroom" class="bar" style="background-image:url('images/restaurant.png'); width: 100px"><p>x</p></div>
+		<div id="bar_openShowroom" class="bar" style="background-image:url('images/shop.png'); width: 100px"><p>x</p></div>
+		<div id="bar_openShowroom" class="bar" style="background-image:url('images/checkout.png'); width: 100px"><p>x</p></div>
+		<div id="bar_openShowroom" class="bar" style="background-image:url('images/pharmacy.png'); width: 100px"><p>x</p></div>
+		<div id="bar_openShowroom" class="bar" style="background-image:url('images/trolleys.png'); width: 100px"><p>x</p></div>
+	</div>
+
+	<canvas id="myCanvas" width="2048" height="2048" style="background-color: black"></canvas>
+</body>
+</html>

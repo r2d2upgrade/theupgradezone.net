@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<script>
+
+//====================== VARIABLES ======================
+var array_dots = [];
+var maxDistance = 100;
+
+var element_myCanvas = null;
+var dots = 11;
+
+var ctx = null;
+
+//====================== INIT ======================
+function init() {
+	//Get elements
+	element_myCanvas = document.getElementById("myCanvas");
+	ctx = element_myCanvas.getContext("2d");
+
+	//Fill dots
+	for (var i = 0; i < dots; i++) {
+		array_dots[(i*2)-1] = {x:0, y: 0}; //Midpoint
+		array_dots[i*2] = {x: i * maxDistance, y: 10, anchored: false}; //Dot
+	}
+}
+
+function render(event) {
+	//Get mouse
+	var mouseX = event.clientX;
+	var mouseY = event.clientY;
+
+	//Set first dot to mouse pos
+	array_dots[0].x = mouseX;
+	array_dots[0].y = mouseY;
+
+	//Adjust other dots
+	for (var i = 2; i < array_dots.length; i += 2) {
+		var distance = distanceBetween(array_dots[i].x, array_dots[i].y, array_dots[i-2].x, array_dots[i-2].y);
+		if (distance > maxDistance) {
+			var difference = distance - maxDistance; //The difference between distance and maxDistance
+			var angle = angleBetween(array_dots[i].x, array_dots[i].y, array_dots[i-2].x, array_dots[i-2].y);
+
+			var dx = difference * Math.cos(angle);
+			var dy = difference * Math.sin(angle);
+
+			array_dots[i].x += dx;
+			array_dots[i].y += dy;
+		}
+	}
+	fillMidpoints();
+	
+	//Render empty box
+	ctx.fillStyle = "#ffffff"
+	ctx.fillRect(0, 0, element_myCanvas.width, element_myCanvas.height);
+
+	//Render dots
+	for (var i = 0; i < array_dots.length; i+=2) {
+		
+		ctx.beginPath();
+		ctx.arc(array_dots[i].x, array_dots[i].y, 5, 0, 2 * Math.PI, false);
+		ctx.fillStyle = '#dddddd';
+		ctx.fill();
+	}
+
+	//Render midpoints
+	/*for (var i = 1; i < array_dots.length; i+=2) {
+		ctx.beginPath();
+		ctx.arc(array_dots[i].x, array_dots[i].y, 3, 0, 2 * Math.PI, false);
+		ctx.fillStyle = '#ff4444';
+		ctx.fill();
+	}*/
+
+	//Render lines
+	/*
+	for (var i = 0; i < array_dots.length - 1; i+=2) {
+		ctx.beginPath();
+		ctx.moveTo(array_dots[i].x, array_dots[i].y);
+		ctx.lineTo(array_dots[i+2].x, array_dots[i+2].y);
+		ctx.strokeStyle = "#dddddd"
+		ctx.lineWidth = 1;
+		ctx.stroke();
+	}*/
+
+	//Render curves
+	//Start line
+	ctx.beginPath();
+	ctx.moveTo(array_dots[0].x, array_dots[0].y);
+	ctx.lineTo(array_dots[1].x, array_dots[1].y);
+	ctx.strokeStyle = "#000000"
+	ctx.lineWidth = 2;
+	ctx.stroke();
+	ctx.closePath();
+	//Curves
+	for (var i = 1; i < array_dots.length - 3; i+=2) {
+		drawBezier(array_dots[i].x, array_dots[i].y, array_dots[i+1].x, array_dots[i+1].y, array_dots[i+2].x, array_dots[i+2].y, 0.1);
+	}
+	//End line
+	ctx.beginPath();
+	ctx.moveTo(array_dots[array_dots.length-2].x, array_dots[array_dots.length-2].y);
+	ctx.lineTo(array_dots[array_dots.length-1].x, array_dots[array_dots.length-1].y);
+	ctx.strokeStyle = "#000000"
+	ctx.lineWidth = 2;
+	ctx.stroke();
+	ctx.closePath();
+}
+
+function drawBezier(x1, y1, x2, y2, x3, y3, step) {
+	var point1 = {x: x1, y: y1};
+	var point2 = {x: x1, y: y1};
+
+	for (var t = 0; t < 1.0; t += step) {
+		point2.x = x2 + (squared(1-t)*(x1-x2)) + (squared(t)*(x3-x2));
+		point2.y = y2 + (squared(1-t)*(y1-y2)) + (squared(t)*(y3-y2));
+		ctx.beginPath();
+		ctx.moveTo(point1.x, point1.y);
+		ctx.lineTo(point2.x, point2.y);
+		ctx.strokeStyle = "#000000";
+		ctx.lineWidth = 2;
+		ctx.stroke();
+		//ctx.closePath();
+
+		point1.x = point2.x;
+		point1.y = point2.y;
+	}
+}
+
+function fillMidpoints() {
+	for (var i = 1; i < array_dots.length; i+= 2) {
+		var midpoint = findMidpoint(array_dots[i-1].x,array_dots[i-1].y,array_dots[i+1].x,array_dots[i+1].y)
+		array_dots[i].x = midpoint.x;
+		array_dots[i].y = midpoint.y;
+	}
+}
+
+function distanceBetween(x1, y1, x2, y2) {
+	return(Math.sqrt(squared(x2-x1) + squared(y2-y1)));
+}
+
+function angleBetween(x1, y1, x2, y2) {
+	return(Math.atan2((y2-y1),(x2-x1)));
+}
+
+function squared(n) {
+	return(n * n);
+}
+
+function findMidpoint(x1, y1, x2, y2) {
+	return{x:(x1+x2)/2, y:(y1+y2)/2};
+}
+</script>
+
+<body onload="init()" style="padding: 0px; margin: 0px">
+<canvas id="myCanvas" width="1500" height="900" style="background-color: gray; margin: 0px; padding: 0px" onmousemove="render(event)"></canvas>
+</body>
+</html>

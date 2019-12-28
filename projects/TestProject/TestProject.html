@@ -1,0 +1,158 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="TestProject.css">
+</head>
+
+<script>
+
+//===========VARIABLES===========
+	//All particles
+	var Particles = [
+			{size:10,mass:100,colour:"#123456",x:40,y:40,direction:0,speed:0,xVel:0,yVel:0},
+			{size:10,mass:100,colour:"#123456",x:200,y:200,direction:0,speed:0,xVel:0,yVel:0},
+			{size:10,mass:100,colour:"#123456",x:0,y:300,direction:0,speed:0,xVel:0,yVel:0}
+	]
+	//Canvas
+	var myCanvas = null;
+	//Math constants
+	var G = 0.0001;
+
+	function init() {
+		myCanvas = document.getElementById("myCanvas"); //global myCanvas variable
+		resizeCanvas(); //resize canvas to current window size
+		window.setInterval(tick, 20); //sets the function to call every frame
+	}
+
+//===========LOGIC===========
+
+	function tick() {
+		for (var ticki = 0; ticki < Particles.length; ticki++) { //set each movement for each particle
+			//x and y of imaginary point in which direction and speed the particle shall move after checks. It is set to x and y velocities of current particle
+			var ax = Particles[ticki].speed * Math.cos(toRad(Particles[ticki].direction));
+			var ay = Particles[ticki].speed * -Math.sin(toRad(Particles[ticki].direction));
+
+			for (var vectori = 0; vectori < Particles.length; vectori++) { //check against each other particle
+				if (vectori != ticki) { //if the current particle we are checking is not the same as the one we are changing
+					var tempForce = G*(Particles[ticki].mass*Particles[vectori].mass)/distanceBetween(Particles[ticki].x, Particles[ticki].y, Particles[vectori].x, Particles[vectori].y); //distance between current particle and checking particle run through F = G(mass1*mass2)/D squared.
+
+					//add the force vector for the checked particle to the current changing particle's vector
+					ax += tempForce * Math.cos(toRad(directionTo(Particles[ticki].x, Particles[ticki].y, Particles[vectori].x, Particles[vectori].y)));
+					ay += tempForce * -Math.sin(toRad(directionTo(Particles[ticki].x, Particles[ticki].y, Particles[vectori].x, Particles[vectori].y)));
+				}
+			}
+
+			drawLine(myCanvas, Particles[ticki].x, Particles[ticki].y, Particles[ticki].x+ax, Particles[ticki].y+ay, 1, "#990000");
+			//set speed and direction
+			Particles[ticki].speed = distanceBetween(0,0,ax,ay);
+			Particles[ticki].direction = directionTo(0,0,ax,ay);
+
+			//set x and y velocities
+			Particles[ticki].xVel = Particles[ticki].speed * Math.cos(toRad(Particles[ticki].direction));
+		    Particles[ticki].yVel = Particles[ticki].speed * -Math.sin(toRad(Particles[ticki].direction));
+
+		    //apply velocities to x and y
+		    Particles[ticki].x += Particles[ticki].xVel;
+		    Particles[ticki].y += Particles[ticki].yVel;
+
+		    //if (Particles[ticki].x < 0) Particles[ticki].xVel = makePositive(Particles[ticki].xVel);
+		    //if (Particles[ticki].x > myCanvas.width) Particles[ticki].xVel = makeNegative(Particles[ticki].xVel);
+		    //if (Particles[ticki].y < 0) Particles[ticki].yVel = makePositive(Particles[ticki].yVel);
+		    //if (Particles[ticki].y > myCanvas.height) Particles[ticki].yVel = makeNegative(Particles[ticki].yVel);
+		}
+		draw();
+	}
+
+//===========MATH===========
+	function makePositive(makePositiveNumber) {
+		if (makePositiveNumber < 0) makePositiveNumber *= -1;
+		return makePositiveNumber;
+	}
+	function makeNegative(makeNegativeNumber) {
+		if (makeNegativeNumber > 0) makeNegativeNumber *= -1;
+		return makeNegativeNumber;
+	}
+	function distanceBetween(disBetX1, disBetY1, disBetX2, disBetY2) {
+		return Math.sqrt(squared(disBetX2-disBetX1)+squared(disBetY2-disBetY1));
+	}
+	function directionTo(dirToX1, dirToY1, dirToX2, dirToY2) {
+		return Math.atan((dirToY2-dirToY1)/(dirToX2-dirToX1));
+	}
+	function toRad(toRad) {
+		return (toRad/180)*Math.PI
+	}
+	function squared(squared) {
+		return squared * squared;
+	}
+//===========CANVAS===========
+	window.onresize = function(event) {
+	    resizeCanvas()
+	}
+
+	function resizeCanvas() {
+		myCanvas.width = window.innerWidth;
+	    myCanvas.height = window.innerHeight;
+	    draw();
+	}
+
+//===========DRAW===========
+	function draw() {
+		drawRectangle(myCanvas, 0, 0, myCanvas.width, myCanvas.height, 3, "#000000", "#ffffff");
+		for (var drawi = 0; drawi < Particles.length; drawi++) { 
+		    drawArc(myCanvas, Particles[drawi].x, Particles[drawi].y, Particles[drawi].size, 0, 360, 0, 0, "#000", Particles[drawi].colour);
+		}
+	}
+
+	function drawRectangle(drawRectCanvas, drawRectX1, drawRectY1, drawRectX2, drawRectY2, drawRectLineWidth, drawRectLineColour, drawRectFillColour) {
+		//drawRectangle(canvas, x1, y1, x2, y2, lineWidth, lineColour, fillColour);
+	    drawRectContext = drawRectCanvas.getContext('2d');
+
+	    drawRectContext.beginPath();
+	    drawRectContext.rect(drawRectX1, drawRectY1, drawRectX2, drawRectY2);
+	    drawRectContext.fillStyle = drawRectFillColour;
+	    drawRectContext.fill();
+	    if (drawRectLineWidth > 0) {
+		    drawRectContext.lineWidth = drawRectLineWidth;
+		    drawRectContext.strokeStyle = drawRectLineColour;
+		    drawRectContext.stroke();
+		}
+    	//drawRectContext.endPath();
+	}
+
+	function drawArc(drawArcCanvas, drawArcX, drawArcY, drawArcRadius, drawArcStartAngle, drawArcEndAngle, drawArcAntiClockwise, drawArcLineWidth, drawArcLineColour, drawArcFillColour) {
+		//drawArc(canvas, x, y, radius, startAngle, endAngle, antiClockwise, lineWidth, lineColour, fillColour);
+	    drawArcContext = drawArcCanvas.getContext('2d');
+
+	    drawArcContext.beginPath();
+	    drawArcContext.arc(drawArcX, drawArcY, drawArcRadius, drawArcStartAngle, drawArcEndAngle, drawArcAntiClockwise);
+	    if (drawArcLineWidth == 0) {
+	    	drawArcContext.fillStyle = drawArcFillColour;
+	    	drawArcContext.fill();
+	    }
+	    if (drawArcLineWidth > 0) {
+		    drawArcContext.lineWidth = drawArcLineWidth;
+		    drawArcContext.strokeStyle = drawArcLineColour;
+		    drawArcContext.stroke();
+		}
+	    //drawArcContext.endPath();
+	}
+
+	function drawLine(drawLineCanvas, drawLineX1, drawLineY1, drawLineX2, drawLineY2, drawLineWidth, drawLineColour) {
+		//drawLine(canvas, x1, y1, x2, y2, lineWidth, lineColour);
+	    drawLineContext = drawLineCanvas.getContext('2d');
+
+	    drawLineContext.beginPath();
+	    drawLineContext.moveTo(drawLineX1, drawLineY1);
+	    drawLineContext.lineTo(drawLineX2, drawLineY2);
+	    drawLineContext.closePath();
+
+	    drawLineContext.lineWidth = drawLineWidth;
+	    drawLineContext.strokeStyle = drawLineColour;
+	    drawLineContext.stroke();
+	}
+
+</script>
+
+<body onload="init()">
+
+	<canvas id="myCanvas" width="window.innerWidth" height="window.innerHeight"></canvas>
+
+</body>
