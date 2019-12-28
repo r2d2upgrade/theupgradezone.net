@@ -1,0 +1,215 @@
+/* PC */
+
+/* HEADER */
+header {
+    margin-bottom: 41px;
+}
+    /* Logo */
+    #logo {
+    }
+    #logo h1 {
+        font-size: 50px;
+        color: #7ed2eb;
+    }
+    #logo img {
+    }
+    /* Collapseable Menu Button */
+    #menuButton h1 {
+            visibility: hidden;
+            font-size: 0px;
+            padding: 0px 0px;
+            margin: 0px;
+            transition-duration: 0s;
+        }
+    #menuButton h1:hover {
+        transition-duration: 0s;
+    }
+    /* Nav */
+    #nav {
+        position: absolute;
+    }
+        #nav.hidden {
+            display: block;
+        }
+        #nav ul {
+            max-height: 38px;
+        }
+            #nav ul li {
+                font-size: 18px;
+                display: inline-block;
+            }
+            #nav a {
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-bottom: 10px;
+                padding-left: 70px;
+                height: 18px;
+            }
+            #nav a:link {
+            }
+            #nav a:visited {
+            }
+            #nav a:hover { 
+                height: 44px;
+            }
+            #nav a:active {
+            }
+
+/* Main content */
+body {  
+    overflow-y: scroll;
+    background-image: url("../images/background.png");
+    background-attachment: fixed;
+}
+    #content {
+        margin-top: 41px;
+        background-color: rgba(0,0,0,0.5);
+        width: 100%;
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+        font-size: 16px;
+    }
+        #content p { 
+        }
+        #content h1 { 
+        }
+        #content h2 { 
+        }
+        #content h3 {
+            font-style: italic;
+            font-size: 24px;
+        }
+        #content h4 {
+            font-style: bold;
+            font-size: 18px;
+        }
+        /* Link */
+        #content a {
+        }
+        #content a:link {
+        }
+        #content a:visited {
+        }
+        #content a:hover {   
+        }
+        #content a p{
+                font-size: 16px;
+            }
+        /* Download Button */
+        #content a.downloadButton {
+            width: 150px;
+            font-size: 20px;
+        }
+        /* In-content nav buttons */
+        #content a.navButton {
+            width: 80%;
+        }
+            #content a.navButton:link {
+            }
+            #content a.navButton:visited {
+            }
+            #content a.navButton:hover {
+            }
+        #content ul {
+        }
+            #content ul li {
+            }
+                #content ul li h1 {
+                }
+                #content ul li p {
+                }
+        /* Contact Buttons */
+        #content a.contactButton {
+            max-width: 400px;
+        }
+            #content a.contactButton:link {
+            }
+            #content a.contactButton:visited {  
+            }
+            #content a.contactButton:hover { 
+            }
+        /* Splits*/
+        .split10 {
+            float: left;
+            width: 10%;
+        }
+        .split20 {
+            float: left;
+            width: 20%;
+        }
+        .split30 {
+            float: left;
+            width: 30%;
+        }
+        .split40 {
+            float: left;
+            width: 40%;
+        }
+        .split50 {
+            float: left;
+            width: 50%;
+        }
+        .split60 {
+            float: left;
+            width: 60%;
+        }
+        .split70 {
+            float: left;
+            width: 70%;
+        }
+        .split80 {
+            float: left;
+            width: 80%;
+        }
+        .split90 {
+            float: left;
+            width: 90%;
+        }
+        .hidden {
+        }
+        .unselectable {
+        }
+        /* Accordion */
+        .accordion {
+        }
+            .accordion.active {
+            }
+            .accordion:hover {
+            }
+            .accordionContent {
+            }
+        /* Slideshow */
+        .slideshow {
+        }
+            .slideshow .slide {
+                height: 400px;
+            }
+            .slideshow .thumb {
+                height: 100px;
+            }
+                .slideshow .thumb:hover {
+                }
+        /* Gallery */
+        .gallery {
+        }
+            .gallery .slide {
+            }
+                .gallery .slide img {
+                    width: 80%;
+                    max-width: 900px;
+                }
+            .gallery .thumb {
+                width: 25%;
+            }
+                .gallery .thumb:hover {
+                }
+
+/* Footer */
+footer {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}
+    footer p {
+    }
