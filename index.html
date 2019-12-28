@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>The Upgrade Zone</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/mobileFirst.css">
+<link rel="stylesheet" type="text/css" media="only screen and (min-width:601px)" href="styles/main.css">
+<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+
+<script>
+    //Accordion
+    function accordionToggle(thisAccordionElement) {
+        thisAccordionElement.nextElementSibling.classList.toggle('hidden');
+        thisAccordionElement.classList.toggle('active');
+    }
+
+    //Gallery
+    function galleryShowSlide(thisGalleryElement, galleryImage) {
+        thisGalleryElement.parentNode.children[0].children[1].src = galleryImage;
+        thisGalleryElement.parentNode.children[0].classList.remove('hidden');
+    }
+    function galleryHideSlide(thisGalleryElement) {
+        thisGalleryElement.parentNode.children[0].classList.add('hidden');
+    }
+
+    //Video
+    function galleryShowVideo(thisGalleryElement, galleryVideo) {
+        thisGalleryElement.parentNode.children[0].children[1].src = galleryVideo;
+        thisGalleryElement.parentNode.children[0].classList.remove('hidden');
+    }
+    function galleryHideVideo(thisGalleryElement) {
+        thisGalleryElement.parentNode.children[0].classList.add('hidden');
+        thisGalleryElement.children[1].src = "";
+    }
+
+
+    //Slideshow
+    function slideshowSetSlide(thisSlideshowElement, slideshowImage) {
+        thisSlideshowElement.parentNode.children[0].src = slideshowImage;
+    }
+</script>
+</head>
+
+<body>
+<!-- =====HEADER===== -->
+<header>
+    <div id="logo">
+        <!-- <h1>The Upgrade Zone</h1> -->
+        <img src="images/TheUpgradeZone_Logo.png" alt="Logo">
+    </div>
+    <div id="menuButton" onclick="document.getElementById('nav').classList.toggle('hidden');"><h1>Menu</h1></div>
+    <div id="nav" class="hidden">
+        <ul>
+            <li><a style="background-image:url(images/iconx64_home.png)" href="index.html">Home</a></li>
+            <li><a style="background-image:url(images/iconx64_games.png)" href="games.html">Games</a></li>
+            <li><a style="background-image:url(images/iconx64_projects.png)" href="projects.html">Projects</a></li>
+            <li><a style="background-image:url(images/iconx64_gallery.png)" href="gallery.html">Gallery</a></li>
+            <li><a style="background-image:url(images/iconx64_videos.png)" href="videos.html">Videos</a></li>
+            <li><a style="background-image:url(images/iconx64_about.png)" href="about.html">About</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- =====CONTENT===== -->
+<div id="content">
+    <h1>Welcome!</h1>
+    <p style="text-align: center;">
+        Welcome to my website! My online portfolio and host for my programming and art projects, and other gubbins I make.
+    </p>
+    <a class="navButton" href="games.php">Games<p>Games up for purchase, prototypes, and competition entries.</p></a>
+    <a class="navButton" href="projects.php">Projects<p>Miscellaneous programming and real life projects.</p></a>
+    <a class="navButton" href="gallery.php">Gallery<p>Drawn and digital art, and 3D modelling.</p></a>
+    <a class="navButton" href="videos.php">Videos<p>Edited gameplay, memes, and other videos.</p></a>
+    <a class="navButton" href="about.php">About<p>My skills and how to contact me.</p></a>
+</div>
+
+<!-- =====FOOTER===== -->
+<footer>
+    <p>© The Upgrade Zone 2020</p>
+    <p>All rights reserved</p>
+</footer>
+
+</body>
+</html>

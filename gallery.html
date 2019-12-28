@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Gallery</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/mobileFirst.css">
+<link rel="stylesheet" type="text/css" media="only screen and (min-width:601px)" href="styles/main.css">
+<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+
+<script>
+    //Accordion
+    function accordionToggle(thisAccordionElement) {
+        thisAccordionElement.nextElementSibling.classList.toggle('hidden');
+        thisAccordionElement.classList.toggle('active');
+    }
+
+    //Gallery
+    function galleryShowSlide(thisGalleryElement, galleryImage) {
+        thisGalleryElement.parentNode.children[0].children[1].src = galleryImage;
+        thisGalleryElement.parentNode.children[0].classList.remove('hidden');
+    }
+    function galleryHideSlide(thisGalleryElement) {
+        thisGalleryElement.parentNode.children[0].classList.add('hidden');
+    }
+
+    //Video
+    function galleryShowVideo(thisGalleryElement, galleryVideo) {
+        thisGalleryElement.parentNode.children[0].children[1].src = galleryVideo;
+        thisGalleryElement.parentNode.children[0].classList.remove('hidden');
+    }
+    function galleryHideVideo(thisGalleryElement) {
+        thisGalleryElement.parentNode.children[0].classList.add('hidden');
+        thisGalleryElement.children[1].src = "";
+    }
+
+
+    //Slideshow
+    function slideshowSetSlide(thisSlideshowElement, slideshowImage) {
+        thisSlideshowElement.parentNode.children[0].src = slideshowImage;
+    }
+</script>
+</head>
+
+<body>
+<!-- =====HEADER===== -->
+<header>
+    <div id="logo">
+        <!-- <h1>The Upgrade Zone</h1> -->
+        <img src="images/TheUpgradeZone_Logo.png" alt="Logo">
+    </div>
+    <div id="menuButton" onclick="document.getElementById('nav').classList.toggle('hidden');"><h1>Menu</h1></div>
+    <div id="nav" class="hidden">
+        <ul>
+            <li><a style="background-image:url(images/iconx64_home.png)" href="index.html">Home</a></li>
+            <li><a style="background-image:url(images/iconx64_games.png)" href="games.html">Games</a></li>
+            <li><a style="background-image:url(images/iconx64_projects.png)" href="projects.html">Projects</a></li>
+            <li><a style="background-image:url(images/iconx64_gallery.png)" href="gallery.html">Gallery</a></li>
+            <li><a style="background-image:url(images/iconx64_videos.png)" href="videos.html">Videos</a></li>
+            <li><a style="background-image:url(images/iconx64_about.png)" href="about.html">About</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- =====CONTENT===== -->
+<div id="content">
+    <h1>Gallery</h1>
+
+    <h2>Digital Art</h2>
+    <div class="gallery">
+        <div class="slide hidden" onclick="galleryHideSlide(this)">
+            <p>Click anywhere to close</p>
+            <img src="">
+        </div>
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/art/Pirate Demo.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/art/Traffic Boss r2.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/art/Gardener Graffiti 75percent.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/art/Demoman Eyelander 25percent.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/art/Pyro Headshot 2.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/art/Sentinel Headshot.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/art/The Sentinel Destruction 25percent.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/art/The Sentinel Gasmask.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/art/Zakrah 50percent.png">
+        <div style="clear: both;"></div>
+    </div>
+
+
+    <h2>3D Modelling</h2>
+    <div class="gallery">
+        <div class="slide hidden" onclick="galleryHideSlide(this)">
+            <p>Click anywhere to close</p>
+            <img src="">
+        </div>
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/The Sentinel Bust Render 001.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/Duck Token Anim.gif">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Rifle 2 Gold Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Void Sword Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Bow.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/Clockwork Sword Test Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Sword 3 Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Mech Gattling Gun 02.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Mech Gattling Gun 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Staff of Time Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Empire Rifle Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Sniper Rifle Render 04.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Sniper Rifle Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/Spider Cube Render 02.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/Spider Cube Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Sword 2 Render 03.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Sword 2 Render 02.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Rifle Render 02.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Rifle Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Blaster Render 02.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Blaster Render 01.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/Alphon Tech Assault Rifle 02.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/Robot Render 03.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/Low Poly Sword 2 Render 2.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/Low Poly Sword 2 Render 1.png">
+        <img class="thumb" onclick="galleryShowSlide(this, this.src)" src="gallery/3d/ZK88 Sword  Low Poly Render 1.png">
+        <div style="clear: both;"></div>
+    </div>
+
+</div>
+
+<!-- =====FOOTER===== -->
+<footer>
+    <p>© The Upgrade Zone 2020</p>
+    <p>All rights reserved</p>
+</footer>
+
+</body>
+</html>

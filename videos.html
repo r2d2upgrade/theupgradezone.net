@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Videos</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/mobileFirst.css">
+<link rel="stylesheet" type="text/css" media="only screen and (min-width:601px)" href="styles/main.css">
+<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+
+<script>
+    //Accordion
+    function accordionToggle(thisAccordionElement) {
+        thisAccordionElement.nextElementSibling.classList.toggle('hidden');
+        thisAccordionElement.classList.toggle('active');
+    }
+
+    //Gallery
+    function galleryShowSlide(thisGalleryElement, galleryImage) {
+        thisGalleryElement.parentNode.children[0].children[1].src = galleryImage;
+        thisGalleryElement.parentNode.children[0].classList.remove('hidden');
+    }
+    function galleryHideSlide(thisGalleryElement) {
+        thisGalleryElement.parentNode.children[0].classList.add('hidden');
+    }
+
+    //Video
+    function galleryShowVideo(thisGalleryElement, galleryVideo) {
+        thisGalleryElement.parentNode.children[0].children[1].src = galleryVideo;
+        thisGalleryElement.parentNode.children[0].classList.remove('hidden');
+    }
+    function galleryHideVideo(thisGalleryElement) {
+        thisGalleryElement.parentNode.children[0].classList.add('hidden');
+        thisGalleryElement.children[1].src = "";
+    }
+
+
+    //Slideshow
+    function slideshowSetSlide(thisSlideshowElement, slideshowImage) {
+        thisSlideshowElement.parentNode.children[0].src = slideshowImage;
+    }
+</script>
+</head>
+
+<body>
+<!-- =====HEADER===== -->
+<header>
+    <div id="logo">
+        <!-- <h1>The Upgrade Zone</h1> -->
+        <img src="images/TheUpgradeZone_Logo.png" alt="Logo">
+    </div>
+    <div id="menuButton" onclick="document.getElementById('nav').classList.toggle('hidden');"><h1>Menu</h1></div>
+    <div id="nav" class="hidden">
+        <ul>
+            <li><a style="background-image:url(images/iconx64_home.png)" href="index.html">Home</a></li>
+            <li><a style="background-image:url(images/iconx64_games.png)" href="games.html">Games</a></li>
+            <li><a style="background-image:url(images/iconx64_projects.png)" href="projects.html">Projects</a></li>
+            <li><a style="background-image:url(images/iconx64_gallery.png)" href="gallery.html">Gallery</a></li>
+            <li><a style="background-image:url(images/iconx64_videos.png)" href="videos.html">Videos</a></li>
+            <li><a style="background-image:url(images/iconx64_about.png)" href="about.html">About</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- =====CONTENT===== -->
+<div id="content">
+    <h1>Videos</h1>
+
+    <div class="gallery">
+        <div class="slide hidden" onclick="galleryHideVideo(this)">
+            <p>Click anywhere to close</p>
+            <iframe width="854" height="480" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="max-width: 100%"></iframe>
+        </div>
+
+        <img class="thumb" onclick="galleryShowVideo(this, 'https://www.youtube.com/embed/j7gvZczZHkc')" src="videos/Pyro Takes Skill Thumbnail.png">
+        <img class="thumb" onclick="galleryShowVideo(this, 'https://www.youtube.com/embed/9BUily6v0jE')" src="videos/Pirate Demo thumbnail.png">
+        <div style="clear: both;"></div>
+    </div>
+
+</div>
+
+<!-- =====FOOTER===== -->
+<footer>
+    <p>© The Upgrade Zone 2020</p>
+    <p>All rights reserved</p>
+</footer>
+
+</body>
+</html>
